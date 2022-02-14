@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "83168618774",
+    "firebase_url": "https://my-projects-e5de2-default-rtdb.firebaseio.com",
+    "project_id": "my-projects-e5de2",
+    "storage_bucket": "my-projects-e5de2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83168618774:android:43eaf9630a86c1c177c837",
+        "android_client_info": {
+          "package_name": "com.esoft.stdmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk7j7EQ-06YqSSvQpjyN2B_gJY1ogvkvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83168618774:android:f160eeaa5ca52d6977c837",
+        "android_client_info": {
+          "package_name": "com.esoft.stdmgmtsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk7j7EQ-06YqSSvQpjyN2B_gJY1ogvkvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83168618774:android:1c7a1aa6f267764877c837",
+        "android_client_info": {
+          "package_name": "com.example.studentmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk7j7EQ-06YqSSvQpjyN2B_gJY1ogvkvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83168618774-0vro849vkc1qvs4t8atb4ir0hg05klkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
