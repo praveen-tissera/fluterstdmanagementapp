@@ -120,7 +120,7 @@ class _StudentsState extends State<Students> {
   Future openDialog() => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Add new batch'),
+        title: Text('Add new Student'),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
