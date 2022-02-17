@@ -105,17 +105,14 @@ class _BatchesState extends State<Batches> {
   );
 
   void saveBatches(id, title,day) async {
-    print("========praveen======");
-    // print(Course.fromMap(_courseItems));
     final objBatch = <String, dynamic> {
       'batch_name':title,
       'batch_st_date': day,
       'course_id': id,
     };
-    // print(_courseItems);
-    _messagesRef.push().set(objBatch)
-        .then((_)=>print('course add to firebase praveen'))
-        .catchError((error)=> print('error praveen $error'));
+     _messagesRef.push().set(objBatch)
+        .then((_)=>print('Batch add to firebase'))
+        .catchError((error)=> print('error on adding batch $error'));
   }
   void loadData() async {
     var url = "https://my-projects-e5de2-default-rtdb.firebaseio.com/" +
