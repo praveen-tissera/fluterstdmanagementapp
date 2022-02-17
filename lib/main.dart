@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'Batches.dart';
 import 'Courses.dart';
 import 'Splash.dart';
 
-void main() {
+void main() async  {
   //runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(home : Splash()));
 }
 

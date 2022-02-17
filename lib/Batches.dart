@@ -1,8 +1,10 @@
-import 'dart:convert';
+      import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'Students.dart';
 import 'models/Batch.dart';
@@ -15,6 +17,8 @@ class Batches extends StatefulWidget {
 }
 
 class _BatchesState extends State<Batches> {
+  final DatabaseReference _messagesRef = FirebaseDatabase.instance.ref().child('StudentManagement/Batches');
+
   List<Batch> _batchItems = [];
   late TextEditingController _ctrlId;
   late TextEditingController _ctrlName;
@@ -92,13 +96,27 @@ class _BatchesState extends State<Batches> {
         ),
         actions: [ElevatedButton(onPressed: () {
           setState(() {
-            _batchItems.add(Batch(batch_id: _ctrlId.text , batch_name : _ctrlName.text, batch_st_date: ''));
+            _batchItems.add(Batch(batch_id: _ctrlId.text , batch_name : _ctrlName.text, batch_st_date: _ctrlDate.text));
+            saveBatches(_ctrlId.text,_ctrlName.text,_ctrlDate.text);
             Navigator.pop(context);
           });
         }, child: Text('Save'))],
       )
   );
 
+  void saveBatches(id, title,day) async {
+    print("========praveen======");
+    // print(Course.fromMap(_courseItems));
+    final objBatch = <String, dynamic> {
+      'batch_name':title,
+      'batch_st_date': day,
+      'course_id': id,
+    };
+    // print(_courseItems);
+    _messagesRef.push().set(objBatch)
+        .then((_)=>print('course add to firebase praveen'))
+        .catchError((error)=> print('error praveen $error'));
+  }
   void loadData() async {
     var url = "https://my-projects-e5de2-default-rtdb.firebaseio.com/" +
         "StudentManagement.json";
