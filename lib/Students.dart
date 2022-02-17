@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'SelectedStudent.dart';
 import 'models/Student.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +17,8 @@ class Students extends StatefulWidget {
 }
 
 class _StudentsState extends State<Students> {
+  final _auth = FirebaseAuth.instance;
+
   final DatabaseReference _messagesRef = FirebaseDatabase.instance.ref().child('StudentManagement/Student');
   List<Student> _studentItems = [];
   //List<Student> _studentItems = [Student(student_mobile: '0776060745', student_gender: 'male', student_name: 'Neo', student_email: 'neo@mail.com', student_id: '11')];
@@ -194,10 +196,26 @@ class _StudentsState extends State<Students> {
         }, child: Text('Save'))],
       )
   );
+
+
+
   void saveStudent(email, id, mobile, gender, stdName, pwd) async {
+
+    //adding to auth
+
+  _auth.createUserWithEmailAndPassword(email: email, password: pwd);
+
+  final firebaseUser = (await _auth
+      .createUserWithEmailAndPassword(email: email, password: pwd
+  ).catchError((errorMsg){
+    print('error adding use to auth ' + errorMsg);
+  })).user;
+
+  if(firebaseUser != null){
     print("========praveen======");
+
     // print(Course.fromMap(_courseItems));
-    final objStudent = <String, dynamic> {
+    Map objStudent = {
       'student_batch':id,
       'student_email': email,
       'student_gender':gender,
@@ -207,10 +225,13 @@ class _StudentsState extends State<Students> {
 
     };
 
-    _messagesRef.push().set(objStudent)
-        .then((_)=>print('student add to firebase'))
-        .catchError((error)=> print('error adding student $error'));
+    _messagesRef.child(firebaseUser.uid).set(objStudent);
+    // _messagesRef.push().set(objStudent)
+    //     .then((_)=>print('student add to firebase'))
+    //     .catchError((error)=> print('error adding student $error'));
   }
+  }
+
   void loadData() async {
     var url = "https://my-projects-e5de2-default-rtdb.firebaseio.com/" +
         "StudentManagement.json";

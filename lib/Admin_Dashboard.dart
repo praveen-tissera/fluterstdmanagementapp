@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Batches.dart';
 import 'Courses.dart';
@@ -36,7 +38,9 @@ class _DashboardState extends State<Admin_Dashboard> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          SystemNavigator.pop();
+          FirebaseAuth.instance.signOut();
+          Fluttertoast.showToast(msg: "Logout Successfully");
+          Navigator.pop(context);
         },
         tooltip: 'Exit',
         child: Icon(Icons.superscript_rounded ),

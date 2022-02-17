@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'MyMarks.dart';
 import 'models/MyCourses.dart';
@@ -62,7 +64,10 @@ class _Student_DashboardState extends State<Student_Dashboard> {
               title: Text('Exit'),
               trailing: Icon(Icons.arrow_forward),
               onTap: (){
-                SystemNavigator.pop();
+                FirebaseAuth.instance.signOut();
+                Fluttertoast.showToast(msg: "Logout Successfully");
+                Navigator.pop(context);
+
               },
             )
           ],
@@ -70,7 +75,10 @@ class _Student_DashboardState extends State<Student_Dashboard> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          SystemNavigator.pop();
+          FirebaseAuth.instance.signOut();
+          Fluttertoast.showToast(msg: "Logout Successfully");
+          Navigator.pop(context);
+          // SystemNavigator.pop();
         },
         child: Icon(Icons.close),
       ),

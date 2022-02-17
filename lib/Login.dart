@@ -1,16 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:studentmanagement/Student_Dashboard.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Admin_Dashboard.dart';
 import 'Courses.dart';
 
 class Login extends StatefulWidget {
+
   @override
   _LoginDemoState createState() => _LoginDemoState();
 }
 
 class _LoginDemoState extends State<Login> {
+  TextEditingController _ctrlEmail = new TextEditingController();
+  TextEditingController _ctrlPassword = new TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +51,7 @@ class _LoginDemoState extends State<Login> {
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
+                controller: _ctrlEmail,
               ),
             ),
             Padding(
@@ -56,6 +65,7 @@ class _LoginDemoState extends State<Login> {
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
+                controller: _ctrlPassword,
               ),
             ),
             /*FlatButton(
@@ -74,9 +84,28 @@ class _LoginDemoState extends State<Login> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Admin_Dashboard()));
+                onPressed: () async {
+                  try {
+                  final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: _ctrlEmail.text, password: _ctrlPassword.text
+                  );
+
+                    if (user != null) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => Admin_Dashboard()));
+
+                    }else{
+                      Fluttertoast.showToast(msg: "Invalid email or password.");
+
+                    }
+                  }
+                  catch(e){
+                    Fluttertoast.showToast(msg: "Invalid email or password.");
+                    print(e);
+                    // Fluttertoast.showToast(msg: "Invalid email or password.");
+                  }
+
                 },
                 child: Text(
                   'Admin Login',
@@ -94,10 +123,28 @@ class _LoginDemoState extends State<Login> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Student_Dashboard()));
+                onPressed: () async {
+                  try {
+                    final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: _ctrlEmail.text, password: _ctrlPassword.text
+                    );
+
+                    if (user != null) {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Student_Dashboard()));
+                    }else{
+                      Fluttertoast.showToast(msg: "Invalid email or password.");
+
+                    }
+                  }
+                  catch(e){
+                    Fluttertoast.showToast(msg: "Invalid email or password.");
+                    print(e);
+                    // Fluttertoast.showToast(msg: "Invalid email or password.");
+                  }
+
                 },
+
                 child: Text(
                   'Student',
                   style: TextStyle(color: Colors.white, fontSize: 25),
